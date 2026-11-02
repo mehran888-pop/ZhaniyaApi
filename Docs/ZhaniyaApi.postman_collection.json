@@ -1,0 +1,2332 @@
+{
+  "info": {
+    "name": "ZhaniyaApi — Full API Collection",
+    "description": "All endpoints of ZhaniyaApi (ASP.NET Web API 2 / .NET 4.8). Set {{baseUrl}} (e.g. http://server) and obtain {{token}} via POST /api/User/Login, then send header: Authorization: Bearer {{token}}",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth (احراز هویت)",
+      "item": [
+        {
+          "name": "Login — ورود و دریافت توکن",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/User/Login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "User",
+                "Login"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Username\": \"admin\",\n  \"Password\": \"123456\",\n  \"SubSystem\": 1\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LoginWithAgency — انتخاب شعبه/سال مالی",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/User/LoginWithAgency",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "User",
+                "LoginWithAgency"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"IDAgency\": 1,\n  \"IDFinancialYear\": 1403\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAll — لیست نام کاربری‌ها",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/User/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "User",
+                "GetAll"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Salon & Desk (سالن و میز)",
+      "item": [
+        {
+          "name": "GetAll — همه سالن‌ها",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon",
+                "GetAll"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByAgencyId — salón‌های شعبه",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon/GetByAgencyId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon",
+                "GetByAgencyId"
+              ],
+              "query": [
+                {
+                  "key": "idAgency",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک salón",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post — ثبت سالن",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"IDAgency\": 1,\n  \"ItemName\": \"سالن اصلی\",\n  \"EntranceAmount\": 0,\n  \"CanVisible\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put — ویرایش سالن",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"IDAgency\": 1,\n  \"ItemName\": \"سالن اصلی\",\n  \"EntranceAmount\": 0,\n  \"CanVisible\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete — حذف salón (AllowAnonymous)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Salon/Delete/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Salon",
+                "Delete",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAll — میزهای سالن",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Desk/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Desk",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "idSalon",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک میز",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Desk/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Desk",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post — ثبت میز",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Desk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Desk"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"IDSalon\": 1,\n  \"ItemName\": \"میز ۱\",\n  \"Capacity\": 4,\n  \"CanVisible\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put — ویرایش میز",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Desk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Desk"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"IDSalon\": 1,\n  \"ItemName\": \"میز ۱\",\n  \"Capacity\": 4,\n  \"CanVisible\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete — حذف میز (AllowAnonymous)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Desk/Delete/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Desk",
+                "Delete",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products (کالا/گروه/برند)",
+      "item": [
+        {
+          "name": "GetAll — درخت گروه‌ها",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductGroup/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductGroup",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "idParent",
+                  "value": ""
+                },
+                {
+                  "key": "idProductType",
+                  "value": ""
+                },
+                {
+                  "key": "setPicture",
+                  "value": "true"
+                },
+                {
+                  "key": "JustParent",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک گروه",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductGroup/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductGroup",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post — ثبت گروه (نام obfuscated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductGroup/ofhgeFPkAE",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductGroup",
+                "ofhgeFPkAE"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"ItemName\": \" writes grup جدید\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put — ویرایش گروه",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductGroup/AipgrPdhgV",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductGroup",
+                "AipgrPdhgV"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"IDParent\": null,\n  \"ItemName\": \"گروه\",\n  \"HasChild\": false,\n  \"HasBrand\": false\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete — حذف گروه (AllowAnonymous)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductGroup/FSRghiqrde",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductGroup",
+                "FSRghiqrde"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAll — گروه‌های دارای برند",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductBrand/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductBrand",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "idParent",
+                  "value": ""
+                },
+                {
+                  "key": "setPicture",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک برند",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductBrand/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductBrand",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post — ثبت برند",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductBrand/jKEgay2I8R",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductBrand",
+                "jKEgay2I8R"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"ItemName\": \"برند\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put — ویرایش برند",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductBrand/oM8gR4LN61",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductBrand",
+                "oM8gR4LN61"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"ItemName\": \"برند\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete — حذف برند (AllowAnonymous)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ProductBrand/eqngI91K9r",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ProductBrand",
+                "eqngI91K9r"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAll — لیست کالا با فیلتر",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "idGroup",
+                  "value": ""
+                },
+                {
+                  "key": "idBrand",
+                  "value": ""
+                },
+                {
+                  "key": "idOrderType",
+                  "value": ""
+                },
+                {
+                  "key": "idProductType",
+                  "value": ""
+                },
+                {
+                  "key": "setPicture",
+                  "value": "true"
+                },
+                {
+                  "key": "sortType",
+                  "value": "0"
+                },
+                {
+                  "key": "canSync",
+                  "value": ""
+                },
+                {
+                  "key": "setInventory",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک کالا",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetProductBarcode — جستجو با بارکد",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetProductBarcode",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetProductBarcode"
+              ],
+              "query": [
+                {
+                  "key": "barcode",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByGroupId — کالاهای گروه",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetByGroupId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetByGroupId"
+              ],
+              "query": [
+                {
+                  "key": "idGroup",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetInventory — موجودی",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetInventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetInventory"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                },
+                {
+                  "key": "idFinancialYear",
+                  "value": ""
+                },
+                {
+                  "key": "idStore",
+                  "value": ""
+                },
+                {
+                  "key": "idCostCenter",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetSlider — تصاویر اسلایدر",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetSlider",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetSlider"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetSliderID — id اسلایدرها",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetSliderID",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetSliderID"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetTodayProducts — کالاهای امروز",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetTodayProducts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetTodayProducts"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetDailyProductList — کالای روز",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetDailyProductList",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetDailyProductList"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByIdInvoice — امتیازهای فاکتور",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetByIdInvoice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetByIdInvoice"
+              ],
+              "query": [
+                {
+                  "key": "value",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByInvoiceNumber",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetByInvoiceNumber",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetByInvoiceNumber"
+              ],
+              "query": [
+                {
+                  "key": "value",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByOrderNo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/GetByOrderNo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "GetByOrderNo"
+              ],
+              "query": [
+                {
+                  "key": "value",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post — ثبت کالا (نام obfuscated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/icIgnpwXUR",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "icIgnpwXUR"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"IDGroup\": 1,\n  \"IDProductType\": 1,\n  \"ProductName\": \"کالا\",\n  \"ProductCode\": 1001,\n  \"UnitPrice\": 100000,\n  \"CanVisible\": true,\n  \"CanSync\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put — ویرایش کالا",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Product/KrTg66hP3M",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Product",
+                "KrTg66hP3M"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"IDGroup\": 1,\n  \"ProductName\": \"کالا\",\n  \"UnitPrice\": 100000\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Person (اشخاص/مشتری/دفترکل)",
+      "item": [
+        {
+          "name": "GetAll — لیست اشخاص",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Person/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Person",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "canVisible",
+                  "value": "true"
+                },
+                {
+                  "key": "setPicture",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک شخص",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Person/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Person",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByTel — جستجو با شماره تماس",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Person/GetByTel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Person",
+                "GetByTel"
+              ],
+              "query": [
+                {
+                  "key": "value",
+                  "value": "0912..."
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetBill — دفترکل/صورت-hساب",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Person/GetBill",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Person",
+                "GetBill"
+              ],
+              "query": [
+                {
+                  "key": "idAccount",
+                  "value": "1"
+                },
+                {
+                  "key": "since",
+                  "value": ""
+                },
+                {
+                  "key": "until",
+                  "value": ""
+                },
+                {
+                  "key": "showDetails",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Insert — ثبت شخص جدید",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Person/Insert",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Person",
+                "Insert"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"Mobile\": \"\",\n  \"Tel\": \"\",\n  \"Address\": \"\",\n  \"Barcode\": \"\",\n  \"Email\": \"\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Invoice (فاکتور/پرداخت/چاپ)",
+      "item": [
+        {
+          "name": "Insert — ثبت فاکتور",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/Insert",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "Insert"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"IdOrderType\": 1,\n  \"IdDepartment\": 1,\n  \"IdAccount\": 1,\n  \"InvoiceItems\": [],\n  \"Payments\": [],\n  \"Desks\": []\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update — ویرایش فاکتور",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/Update",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "Update"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"IdOrderType\": 1,\n  \"InvoiceItems\": [],\n  \"Payments\": []\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CheckOut — تسویه فاکتور",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/CheckOut",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "CheckOut"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 1,\n  \"Payments\": [\n    {\n      \"IDFund\": 1,\n      \"IDType\": 1,\n      \"Amount\": 100000\n    }\n  ]\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — یک فاکتور",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAll — فاکتورها با فیلتر تاریخ",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/GetAll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "GetAll"
+              ],
+              "query": [
+                {
+                  "key": "idFinancialYear",
+                  "value": "1403"
+                },
+                {
+                  "key": "since",
+                  "value": "0"
+                },
+                {
+                  "key": "until",
+                  "value": "0"
+                },
+                {
+                  "key": "idAccount",
+                  "value": "0"
+                },
+                {
+                  "key": "invoiceNo",
+                  "value": "0"
+                },
+                {
+                  "key": "isPersianDate",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete — حذف فاکتور (id در بدنه)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/Delete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "Delete"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "1"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ChangeDesk — جابجایی میز",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/ChangeDesk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "ChangeDesk"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"IDInvoice\": 1,\n  \"Desks\": [\n    2,\n    3\n  ]\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "InsertCar — ثبت خودرو (کارواش)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/InsertCar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "InsertCar"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"IDPerson\": 1,\n  \"IDCarModel\": 1,\n  \"IDColor\": 1,\n  \"PlaqueNo\": \"12الف345\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pkEgsudbFd — تراکنش کارتخوان (obfuscated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/pkEgsudbFd",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "pkEgsudbFd"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"IDFund\": 1,\n  \"IDType\": 2,\n  \"Amount\": 1000,\n  \"IDTerminal\": 1\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Print — چاپ فاکتور/آشپزخانه",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/Print",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "Print"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                },
+                {
+                  "key": "setFactor",
+                  "value": "true"
+                },
+                {
+                  "key": "setKitchen",
+                  "value": "true"
+                },
+                {
+                  "key": "isTakeAway",
+                  "value": "false"
+                },
+                {
+                  "key": "forInsert",
+                  "value": "false"
+                },
+                {
+                  "key": "idTemplate",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetBillPrint — خروجی فاکتور (PDF/Excel)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/GetBillPrint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "GetBillPrint"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                },
+                {
+                  "key": "exportType",
+                  "value": "1"
+                },
+                {
+                  "key": "idTemplate",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "kDhg4CxoNf — Web Viewer گزارش Stimulsoft (obfuscated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Invoice/kDhg4CxoNf",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Invoice",
+                "kDhg4CxoNf"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Digital Menu (منوی دیجیتال)",
+      "item": [
+        {
+          "name": "LogOn — ورود میز (QR)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/LogOn",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "LogOn"
+              ],
+              "query": [
+                {
+                  "key": "tableId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMenu — منوی کامل",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/GetMenu",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "GetMenu"
+              ],
+              "query": [
+                {
+                  "key": "idGroup",
+                  "value": ""
+                },
+                {
+                  "key": "idBrand",
+                  "value": ""
+                },
+                {
+                  "key": "idOrderType",
+                  "value": ""
+                },
+                {
+                  "key": "idProductType",
+                  "value": ""
+                },
+                {
+                  "key": "setPicture",
+                  "value": "true"
+                },
+                {
+                  "key": "sortType",
+                  "value": "0"
+                },
+                {
+                  "key": "canSync",
+                  "value": ""
+                },
+                {
+                  "key": "setInventory",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetProductGroups — گروه‌های منو",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/GetProductGroups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "GetProductGroups"
+              ],
+              "query": [
+                {
+                  "key": "idParent",
+                  "value": ""
+                },
+                {
+                  "key": "idProductType",
+                  "value": ""
+                },
+                {
+                  "key": "setPicture",
+                  "value": "true"
+                },
+                {
+                  "key": "JustParent",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCustomer — مشتری با موبایل",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/GetCustomer",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "GetCustomer"
+              ],
+              "query": [
+                {
+                  "key": "mobileNo",
+                  "value": "0912..."
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "InsertCustomer — ثبت مشتری",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/InsertCustomer",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "InsertCustomer"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"MobileNo\": \"\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetImage — تصویر (کش 24h)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/GetImage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "GetImage"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "InsertOrder — ثبت سفارش از منو",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/DigitalMenu/InsertOrder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "DigitalMenu",
+                "InsertOrder"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID\": 0,\n  \"IDDepartment\": 1,\n  \"IdAccount\": 1,\n  \"InvoiceItems\": [\n    {\n      \"IDProduct\": 1,\n      \"IDStore\": 1,\n      \"Quantity\": 1,\n      \"UnitPrice\": 100000\n    }\n  ],\n  \"Payments\": []\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Media (فایل‌ها)",
+      "item": [
+        {
+          "name": "Get — متادیتای فایل",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/MediaFile/Get/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "MediaFile",
+                "Get",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetFile — دانلود فایل",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/MediaFile/GetFile/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "MediaFile",
+                "GetFile",
+                "1"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetClipFile — کلیپ تبلیغاتی",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/MediaFile/GetClipFile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "MediaFile",
+                "GetClipFile"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetVideo — استریم ویدیو",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/MediaFile/GetVideo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "MediaFile",
+                "GetVideo"
+              ],
+              "query": [
+                {
+                  "key": "videoName",
+                  "value": "promo.mp4"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Rating & General & Lookup",
+      "item": [
+        {
+          "name": "GetCommentSample — نمونه نظرهای آماده",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Rating/GetCommentSample",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Rating",
+                "GetCommentSample"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Insert — ثبت امتیاز",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Rating/Insert",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Rating",
+                "Insert"
+              ],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Ratings\": [\n    {\n      \"ID\": 0,\n      \"IDPerson\": 1,\n      \"IDProduct\": 1,\n      \"IDInvoice\": 1,\n      \"Rate\": 5,\n      \"RateDate\": \"2026-11-02T00:00:00\"\n    }\n  ]\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get — lookup عمومی جدول",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/BaseGetter/Get",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "BaseGetter",
+                "Get"
+              ],
+              "query": [
+                {
+                  "key": "prefix",
+                  "value": ""
+                },
+                {
+                  "key": "tableName",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCarwashTables — گزینه‌های کارواش",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/BaseGetter/GetCarwashTables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "BaseGetter",
+                "GetCarwashTables"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAllDiscountLevel — سطوح تخفیف",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/BaseGetter/GetAllDiscountLevel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "BaseGetter",
+                "GetAllDiscountLevel"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "InsertCallHistory — ثبت تماس تلفنی",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/General/InsertCallHistory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "General",
+                "InsertCallHistory"
+              ],
+              "query": [
+                {
+                  "key": "appId",
+                  "value": "pos"
+                },
+                {
+                  "key": "callerId",
+                  "value": ""
+                },
+                {
+                  "key": "calledId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pages & SignalR",
+      "item": [
+        {
+          "name": "صفحه اصلی",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}//",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "",
+                ""
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Help Page — مستندات خودکار",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Help",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Help"
+              ],
+              "query": []
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
