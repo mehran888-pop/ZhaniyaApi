@@ -1,0 +1,9 @@
+# داده‌های زمان اجرا — کامیت نشوند
+cloud/data/
+connector/connector_state.json
+connector/connector_outbox.sqlite
+connector/config.json
+
+# هاست
+.DS_Store
+Thumbs.db

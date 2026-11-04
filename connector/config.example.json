@@ -1,0 +1,63 @@
+{
+  "mode": "demo",
+
+  "cloud_url": "https://your-cloud-server.example.com",
+  "ingest_path": "api/ingest.php",
+  "health_path": "api/health.php",
+  "device_key": "demo-device-key",
+  "device_secret": "demo-device-secret",
+
+  "sync_interval_sec": 20,
+  "heartbeat_sec": 120,
+  "http_timeout": 30,
+  "verify_tls": true,
+
+  "state_file": "connector_state.json",
+  "outbox_file": "connector_outbox.sqlite",
+
+  "api": {
+    "base_url": "http://127.0.0.1/ZhaniyaApi",
+    "username": "USER",
+    "password": "PASS",
+    "agency": "",
+    "login_path": "api/User/LoginWithAgency",
+    "invoices_path": "api/Invoice/GetAll",
+    "products_path": "api/Product/GetAll",
+    "persons_path": "api/Person/GetAll",
+    "timeout": 30,
+    "api_map": {
+      "token": "Token",
+      "invoices": "Invoices",
+      "inv_id": "IDInvoice",
+      "inv_number": "InvoiceNumber",
+      "inv_date": "InvoiceDate",
+      "inv_time": "InvoiceTime",
+      "inv_person_id": "IDPerson",
+      "inv_person_name": "PersonName",
+      "inv_desk": "DeskName",
+      "inv_user": "UserName",
+      "inv_pay_type": "PayType",
+      "inv_total": "AbsTotalPrice",
+      "inv_discount": "AbsTotalDiscount",
+      "inv_payable": "AbsPayable",
+      "inv_paid": "AbsTotalPayment",
+      "inv_status": "Status",
+      "invoice_items": "InvoiceItems",
+      "item_id": "IDInvoiceItem",
+      "item_product_id": "IDProduct",
+      "item_name": "ProductName",
+      "item_qty": "AbsQuantity",
+      "item_price": "AbsPrice",
+      "item_discount": "AbsDiscount",
+      "item_total": "AbsFinalAmount"
+    }
+  },
+
+  "sql": {
+    "connection_string": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=.\\SQLEXPRESS;DATABASE=ZhaniyaDB;UID=sa;PWD=CHANGE_ME",
+    "queries": {
+      "invoices": "SELECT TOP (200) * FROM DBInvoice WHERE InvoiceDate >= ? ORDER BY InvoiceDate DESC",
+      "items": "SELECT * FROM DBInvoiceItem WHERE IDInvoice IN (SELECT IDInvoice FROM DBInvoice WHERE InvoiceDate >= ?)"
+    }
+  }
+}
