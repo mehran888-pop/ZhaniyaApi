@@ -31,10 +31,27 @@
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## راه‌اندازی سریع داشبورد (دمو)
+## 🚀 نصب آسان (Setup)
 
-پیش‌نیاز: PHP 8.1+ با اکستنشن‌های `pdo_sqlite` (یا `pdo_mysql`) و `mbstring`.
+سه راه دارید — از آسان‌ترین:
 
+### راه ۱ — ویزارد نصب تحت وب (روی هاست)
+1. پوشه‌ی `cloud/` را روی هاست PHP آپلود کنید (پوشه‌ی `public` در داک‌روت وب‌سرور).
+2. در مرورگر باز کنید: **`http://YOUR-SERVER/setup.php`**
+3. ویزارد ۴ مرحله‌ای را دنبال کنید:
+   بررسی سیستم ← پایگاه‌داده (SQLite بدون پیکربندی یا MySQL) ← حساب مدیر + کلید دستگاه ← پایان.
+4. در پایان، فایل **`config.json` کانکتور** را دانلود و روی سیستم فروشگاه اجرا کنید.
+
+> پس از نصب، فایل `data/install.lock` ساخته می‌شود و ویزارد دیگر اجرا نمی‌شود.
+
+### راه ۲ — یک دستور (روی سیستم محلی)
+```bash
+python setup.py            # منوی تعاملی فارسی (ویندوز: setup.bat | لینوکس/مک: setup.sh)
+python setup.py --demo     # نصب سریع دمو + اجرای داشبورد با یک دستور
+python setup.py --check    # بررسی پیش‌نیازها
+```
+
+### راه ۳ — نصب دستی
 ```bash
 cd cloud
 php seed_demo.php            # ساخت کاربر admin و داده‌ی نمونه
@@ -68,7 +85,11 @@ cp config.example.json config.json     # ویرایش: cloud_url و کلیدها
 python zhaniya_connector.py --config config.json
 ```
 
-جزئیات نصب به‌عنوان سرویس ویندوز: [`connector/README.md`](connector/README.md)
+**سرویس ویندوز (بدون دستور):** فایل [`connector/install_service.bat`](connector/install_service.bat) را
+روی سیستم فروشگاه یک‌بار با دسترسی Administrator اجرا کنید تا کانکتور به‌صورت
+خودکار با هر بار روشن شدن ویندوز اجرا شود.
+
+جزئیات بیشتر: [`connector/README.md`](connector/README.md)
 
 برای ثبت دستگاه در سرور ابری، یک ردیف در جدول `devices` بسازید
 (`device_key` و `secret` تصادفی و قوی) و همان مقادیر را در `config.json`

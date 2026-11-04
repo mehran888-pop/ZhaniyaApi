@@ -17,21 +17,30 @@ if ((int)$st->fetchColumn() === 0) {
     echo "user admin / admin123 ساخته شد (در تولید حتماً رمز را عوض کنید)\n";
 }
 
-// دستگاه دمو
+// دستگاه دمو (یا اولین دستگاه ثبت‌شده)
 $st = $pdo->prepare('SELECT COUNT(*) FROM devices WHERE device_key = ?');
 $st->execute(['demo-device-key']);
 if ((int)$st->fetchColumn() === 0) {
-    $pdo->prepare('INSERT INTO devices (device_key, secret, name, store_name, status) VALUES (?,?,?,?,?)')
-        ->execute(['demo-device-key', 'demo-device-secret', 'کانکتور شعبه مرکزی', 'فروشگاه مرکزی', 'active']);
-    echo "device demo-device-key / demo-device-secret ساخته شد\n";
+    $any = (int)$pdo->query('SELECT COUNT(*) FROM devices')->fetchColumn();
+    if ($any === 0) {
+        $pdo->prepare('INSERT INTO devices (device_key, secret, name, store_name, status) VALUES (?,?,?,?,?)')
+            ->execute(['demo-device-key', 'demo-device-secret', 'کانکتور شعبه مرکزی', 'فروشگاه مرکزی', 'active']);
+        echo "device demo-device-key / demo-device-secret ساخته شد\n";
+    }
 }
-$deviceId = (int)$pdo->query('SELECT id FROM devices WHERE device_key = \'demo-device-key\'')->fetchColumn();
+// از دستگاه موجود استفاده می‌کنیم (کلید سفارشی نصب‌کننده یا دمو)
+$deviceId = (int)$pdo->query(
+    "SELECT id FROM devices WHERE device_key = 'demo-device-key'"
+)->fetchColumn();
+if ($deviceId === 0) {
+    $deviceId = (int)$pdo->query('SELECT id FROM devices ORDER BY id LIMIT 1')->fetchColumn();
+}
 
 // داده‌ی نمونه (در صورت خالی‌بودن)
 $cnt = (int)$pdo->query('SELECT COUNT(*) FROM invoices')->fetchColumn();
 if ($cnt > 0) {
     echo "داده‌ی فاکتور از قبل موجود است ($cnt). رد شد.\n";
-    exit;
+    return; // قابل include از نصب‌کننده‌ی وب
 }
 
 mt_srand(42);
