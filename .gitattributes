@@ -1,2 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# فایل‌های BAT باید دقیقاً با CRLF ذخیره شوند (پایداری CMD ویندوز)
+*.bat -text
