@@ -117,4 +117,6 @@ python zhaniya_connector.py --config config.json
 ## مستندات
 
 - [بررسی فنی API ژانیا](docs/api-review.fa.md)
+- [راهنمای کامل نصب (از صفر)](docs/INSTALL.fa.md)
+- [نصب روی ویندوز — کنار نرم‌افزار ژانیا و ZhaniyaApi](docs/WINDOWS-INSTALL.fa.md) ⭐
 - [راهنمای کانکتور](connector/README.md)
