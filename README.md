@@ -85,6 +85,10 @@ cp config.example.json config.json     # ویرایش: cloud_url و کلیدها
 python zhaniya_connector.py --config config.json
 ```
 
+**⭐ برنامه‌ی ویندوزی (آیکون کنار ساعت):** با اجرای یک‌بار `connector/build_exe.bat`
+فایل اجرایی `ZhaniyaTray.exe` ساخته می‌شود — برنامه‌ای در system tray با داشبورد
+تنظیمات (نام کاربری/رمز)، اجرای خودکار همراه ویندوز و مدیریت کانکتور.
+
 **سرویس ویندوز (بدون دستور):** فایل [`connector/install_service.bat`](connector/install_service.bat) را
 روی سیستم فروشگاه یک‌بار با دسترسی Administrator اجرا کنید تا کانکتور به‌صورت
 خودکار با هر بار روشن شدن ویندوز اجرا شود.

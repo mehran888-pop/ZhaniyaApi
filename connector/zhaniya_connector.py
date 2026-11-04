@@ -523,13 +523,27 @@ def drain_outbox(client: CloudClient, outbox: Outbox) -> None:
                 return
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description="Zhaniya Connector")
-    ap.add_argument("--config", default=DEFAULT_CONFIG, help="مسیر فایل تنظیمات")
-    ap.add_argument("--once", action="store_true", help="فقط یک چرخه اجرا شود (برای تست)")
-    args = ap.parse_args()
+def run_loop(cfg_path, stop_event=None, status_cb=None, once=False) -> int:
+    """
+    حلقه‌ی اصلی همگام‌سازی — قابل اجرا از CLI یا درون برنامه‌ی سینی (tray app).
 
-    cfg = load_config(args.config)
+    :param cfg_path:   مسیر config.json
+    :param stop_event: threading.Event برای توقف تمیز (اختیاری)
+    :param status_cb:  تابعی که هر پیام وضعیت را می‌گیرد (اختیاری)
+    :param once:       فقط یک چرخه اجرا شود
+    """
+    def emit(msg: str) -> None:
+        log(msg)
+        if status_cb:
+            try:
+                status_cb(msg)
+            except Exception:  # noqa: BLE001
+                pass
+
+    def stopped() -> bool:
+        return stop_event is not None and stop_event.is_set()
+
+    cfg = load_config(cfg_path)
     state_path = cfg.get("state_file", os.path.join(HERE, "connector_state.json"))
     outbox = Outbox(cfg.get("outbox_file", os.path.join(HERE, "connector_outbox.sqlite")))
     client = CloudClient(cfg)
@@ -538,11 +552,11 @@ def main() -> int:
 
     interval = int(cfg.get("sync_interval_sec", 20))
     heartbeat_every = int(cfg.get("heartbeat_sec", 120))
-    log(f"Zhaniya Connector شروع شد — mode={cfg.get('mode', 'demo')} → {client.endpoint}")
-    log(f"همگام‌سازی هر {interval} ثانیه؛ صف معوق: {outbox.size()} بسته")
+    emit(f"Zhaniya Connector شروع شد — mode={cfg.get('mode', 'demo')} → {client.endpoint}")
+    emit(f"همگام‌سازی هر {interval} ثانیه؛ صف معوق: {outbox.size()} بسته")
 
     last_heartbeat = 0.0
-    while True:
+    while not stopped():
         try:
             drain_outbox(client, outbox)
             batch = source.fetch(state.get("since", ""))
@@ -560,25 +574,38 @@ def main() -> int:
                     if newest:
                         state["since"] = newest
                         save_state(state_path, state)
-                    log(
+                    emit(
                         f"ارسال موفق: {n_inv} فاکتور "
                         f"({resp.get('received', {}).get('items', '?')} قلم)"
                     )
                 except Exception as exc:  # noqa: BLE001
-                    log(f"ارسال ناموفق ({exc}) — بسته به صف آفلاین رفت")
+                    emit(f"ارسال ناموفق ({exc}) — بسته به صف آفلاین رفت")
                     outbox.push(json.dumps(batch, ensure_ascii=False))
             else:
                 # داده‌ی جدیدی نیست؛ فقط heartbeat
                 if time.time() - last_heartbeat > heartbeat_every:
                     if client.heartbeat():
-                        log("heartbeat ارسال شد (اتصال برقرار است)")
+                        emit("heartbeat ارسال شد (اتصال برقرار است)")
                     last_heartbeat = time.time()
         except Exception as exc:  # noqa: BLE001
-            log(f"خطای چرخه: {exc}")
+            emit(f"خطای چرخه: {exc}")
 
-        if args.once:
+        if once:
             return 0
-        time.sleep(interval)
+        # خواب تکه‌تکه تا توقف سریع انجام شود
+        deadline = time.time() + interval
+        while time.time() < deadline and not stopped():
+            time.sleep(0.5)
+    emit("Zhaniya Connector متوقف شد")
+    return 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Zhaniya Connector")
+    ap.add_argument("--config", default=DEFAULT_CONFIG, help="مسیر فایل تنظیمات")
+    ap.add_argument("--once", action="store_true", help="فقط یک چرخه اجرا شود (برای تست)")
+    args = ap.parse_args()
+    return run_loop(args.config, once=args.once)
 
 
 if __name__ == "__main__":

@@ -7,3 +7,10 @@ connector/config.json
 # هاست
 .DS_Store
 Thumbs.db
+
+# پایتون
+__pycache__/
+*.pyc
+connector/dist/
+connector/build_tmp/
+connector/tray_error.log
