@@ -104,25 +104,6 @@ return [
 ";
 }
 
-function split_sql(string $sql): array
-{
-    $lines = [];
-    foreach (explode("\n", $sql) as $line) {
-        if (preg_match('/^\s*--/', $line)) {
-            continue;
-        }
-        $lines[] = $line;
-    }
-    $stmts = [];
-    foreach (explode(';', implode("\n", $lines)) as $stmt) {
-        $stmt = trim($stmt);
-        if ($stmt !== '') {
-            $stmts[] = $stmt;
-        }
-    }
-    return $stmts;
-}
-
 // ------------------------------------------------------------- نصب انجام‌شده؟
 if (file_exists($LOCK)) {
     http_response_code(403);
@@ -193,35 +174,49 @@ if ($action === 'install') {
     }
 
     if (!$errors) {
+        $stage = 'آماده‌سازی';
         try {
+            if (!is_file($CLOUD_DIR . '/src/schema.php')) {
+                throw new RuntimeException(
+                    'فایل src/schema.php یافت نشد. مطمئن شوید کل پوشه‌ی cloud (شامل زیرپوشه‌های public و src) را آپلود کرده‌اید، نه فقط public را.'
+                );
+            }
+            require_once $CLOUD_DIR . '/src/schema.php';
+
             // ۱) نوشتن config.php
+            $stage = 'نوشتن فایل config.php';
             $cfgPhp = render_config_php($V);
             if (file_put_contents($CLOUD_DIR . '/config.php', $cfgPhp) === false) {
-                throw new RuntimeException('نوشتن config.php ممکن نشد');
+                throw new RuntimeException('نوشتن config.php ممکن نشد (مجوز نوشتن را بررسی کنید)');
             }
 
-            // ۲) ساخت جداول + کاربر/دستگاه
+            // ۲) اتصال به پایگاه‌داده
+            $stage = 'اتصال به پایگاه‌داده';
             if ($V['db_driver'] === 'mysql') {
                 $pdo = new PDO(
                     "mysql:host={$V['mysql_host']};port={$V['mysql_port']};dbname={$V['mysql_name']};charset=utf8mb4",
                     $V['mysql_user'], $V['mysql_pass'],
                     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
                 );
-                $schema = file_get_contents($CLOUD_DIR . '/schema.mysql.sql');
             } else {
-                $path = str_replace('{APP}', $CLOUD_DIR, (string)$V['db_path']);
+                $path = str_replace(['{APP}', '{app}'], $CLOUD_DIR, (string)$V['db_path']);
+                if (trim($path) === '') {
+                    $path = $CLOUD_DIR . '/data/zhaniya_cloud.sqlite';
+                }
                 $dir = dirname($path);
                 if (!is_dir($dir)) {
                     mkdir($dir, 0775, true);
                 }
                 $pdo = new PDO('sqlite:' . $path, null, null, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
                 $pdo->exec('PRAGMA journal_mode=WAL');
-                $schema = file_get_contents($CLOUD_DIR . '/schema.sqlite.sql');
-            }
-            foreach (split_sql((string)$schema) as $stmt) {
-                $pdo->exec($stmt);
             }
 
+            // ۳) ساخت جداول (از src/schema.php — بدون وابستگی به فایل .sql)
+            $stage = 'ساخت جداول پایگاه‌داده';
+            zh_apply_schema($pdo, (string)$V['db_driver']);
+
+            // ۴) ساخت کاربر مدیر
+            $stage = 'ساخت کاربر مدیر';
             $st = $pdo->prepare('SELECT COUNT(*) FROM users WHERE username = ?');
             $st->execute([(string)$V['admin_user']]);
             if ((int)$st->fetchColumn() === 0) {
@@ -233,6 +228,9 @@ if ($action === 'install') {
                         'admin',
                     ]);
             }
+
+            // ۵) ثبت دستگاه (کانکتور فروشگاه)
+            $stage = 'ثبت دستگاه فروشگاه';
             $st = $pdo->prepare('SELECT COUNT(*) FROM devices WHERE device_key = ?');
             $st->execute([(string)$V['device_key']]);
             if ((int)$st->fetchColumn() === 0) {
@@ -243,20 +241,24 @@ if ($action === 'install') {
                     ]);
             }
 
-            // ۳) داده‌ی نمونه (اختیاری)
+            // ۶) داده‌ی نمونه (اختیاری — خطا در این مرحله نصب را خراب نمی‌کند)
             $seedLog = '';
             if ($V['seed_demo'] === '1' && $V['db_driver'] === 'sqlite') {
-                // موقتاً config را در state نگه می‌داریم؛ seed از config.php تازه می‌خواند
-                // (نیاز به ری‌استارت نیست چون هر درخواست مستقل است)
-                $_SERVER['ZH_SEED'] = '1';
-                ob_start();
-                include $CLOUD_DIR . '/seed_demo.php';
-                $seedLog = trim(ob_get_clean());
+                try {
+                    $stage = 'افزودن داده‌ی نمونه';
+                    ob_start();
+                    include $CLOUD_DIR . '/seed_demo.php';
+                    $seedLog = trim(ob_get_clean());
+                } catch (Throwable $seedEx) {
+                    ob_end_clean();
+                    $seedLog = 'نصب انجام شد؛ ولی افزودن داده‌ی نمونه ناموفق بود: ' . $seedEx->getMessage();
+                }
             } elseif ($V['seed_demo'] === '1') {
                 $seedLog = 'داده‌ی نمونه فقط برای SQLite اضافه می‌شود (برای MySQL از php cloud/seed_demo.php استفاده کنید).';
             }
 
-            // ۴) قفل نصب
+            // ۷) قفل نصب
+            $stage = 'نهایی‌سازی نصب';
             if (!is_dir($CLOUD_DIR . '/data')) {
                 mkdir($CLOUD_DIR . '/data', 0775, true);
             }
@@ -279,7 +281,7 @@ if ($action === 'install') {
             ];
             $step = 'done';
         } catch (Throwable $ex) {
-            $errors[] = 'خطای نصب: ' . $ex->getMessage();
+            $errors[] = 'خطای نصب (مرحله‌ی ' . $stage . '): ' . $ex->getMessage();
             $step = 'admin';
         }
     } else {

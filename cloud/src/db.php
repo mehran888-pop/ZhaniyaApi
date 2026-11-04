@@ -34,11 +34,8 @@ function db(): PDO
 
 function sqlite_init_schema(PDO $pdo): void
 {
-    $schema = file_get_contents(dirname(__DIR__) . '/schema.sqlite.sql');
-    if ($schema === false) {
-        throw new RuntimeException('فایل schema.sqlite.sql یافت نشد');
-    }
-    $pdo->exec($schema);
+    require_once dirname(__DIR__) . '/src/schema.php';
+    zh_apply_schema($pdo, 'sqlite');
 }
 
 /** درج یا به‌روزرسانی قابل حمل (SQLite / MySQL) */
