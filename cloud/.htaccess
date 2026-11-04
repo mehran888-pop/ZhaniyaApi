@@ -1,0 +1,12 @@
+# محافظت از فایل‌های داخلی — فقط وقتی کل پوشه‌ی cloud در دسترس وب است
+# اگر Document Root وب‌سرور روی public/ تنظیم شده باشد، این فایل اصلاً خوانده نمی‌شود.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^public/(.*)$ public/$1 [L]
+    RewriteRule ^ - [F]
+</IfModule>
+
+# اگر mod_rewrite در دسترس نبود، حداقل فایل‌های حساس را می‌بندیم
+<FilesMatch "\.(sql|md|json)$">
+    Require all denied
+</FilesMatch>
