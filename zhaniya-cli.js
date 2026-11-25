@@ -439,6 +439,7 @@ zhaniya-cli — راهنمای API زمانیا (ZhaniyaApi)
   show <نام>                 جزئیات یک endpoint (نام: Controller/Action یا بخشی از آن)
   search <عبارت>             جستجو در نام‌ها، مسیرها و پارامترها
   guide                      راهنمای تعاملی قدم‌به‌قدم (انتخاب کنترلر → action → نحوه فراخوانی)
+  ui [--port عدد]            رابط گرافیکی وب (مرورگر) — فهرست، جستجو و جزئیات به‌صورت بصری
   curl <نام> [--base URL]    ساخت نمونه درخواست curl
   help                       نمایش این راهنما
 
@@ -467,6 +468,9 @@ function main() {
     case 'search': case 'find': cmdSearch(args); break;
     case 'guide': case 'راهنما': cmdGuide(); break;
     case 'curl': case 'call': cmdCurl(args); break;
+    case 'ui': case 'web':
+      require('./zhaniya-ui.js').start(args);
+      break;
     case 'help': case '--help': case '-h': cmdHelp(); break;
     default:
       if (cmd) console.log(c('red', `دستور ناشناخته: ${cmd}\n`));
@@ -474,4 +478,6 @@ function main() {
   }
 }
 
-main();
+module.exports = { buildEndpoints, endpoints, loadCatalog };
+
+if (require.main === module) main();

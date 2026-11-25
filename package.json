@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node zhaniya-cli.js",
+    "ui": "node zhaniya-cli.js ui",
     "list": "node zhaniya-cli.js list",
     "guide": "node zhaniya-cli.js guide"
   },

@@ -9,6 +9,7 @@
 ## اجرا
 
 ```bash
+node zhaniya-cli.js ui           # 🌐 رابط گرافیکی وب (مرورگر) — پیشنهادی
 node zhaniya-cli.js help          # نمایش راهنما
 node zhaniya-cli.js list          # فهرست همهٔ ۹۳ endpoint
 node zhaniya-cli.js list Product  # فهرست کنترلرهای حاوی «Product»
@@ -18,6 +19,24 @@ node zhaniya-cli.js search login      # جستجو
 node zhaniya-cli.js curl User/Login --base http://localhost:5200
 node zhaniya-cli.js guide          # راهنمای تعاملی قدم‌به‌قدم ★
 ```
+
+## رابط گرافیکی وب (بصری) ★
+
+```bash
+node zhaniya-cli.js ui                # پورت پیش‌فرض 8080
+node zhaniya-cli.js ui --port 3000    # پورت دلخواه
+```
+
+سپس در مرورگر باز کن: **http://localhost:8080**
+
+امکانات:
+- فهرست بصری همهٔ endpoint ها به‌صورت کارت، با رنگ‌بندی متدها
+- جستجوی زنده (نام، کنترلر، مسیر، پارامتر)
+- فیلتر از طریق کنترلرها در ستون کناری
+- کلیک روی هر کارت → پنجره جزئیات: مسیر، پارامترها (نام/نوع)، خروجی، وضعیت JWT
+- نمونهٔ `curl` آماده با دکمهٔ کپی
+- نکات استفاده (نیاز به توکن، جای ارسال پارامترها و …)
+
 
 ## دستور `guide` (راهنمای تعاملی)
 
