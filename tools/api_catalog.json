@@ -1,0 +1,1952 @@
+{
+  "assembly": "bin/ZhaniyaApi.dll",
+  "user_strings": [
+    "32.dll",
+    "Alloc",
+    "Close ",
+    "Find ",
+    "GetDelegateForFunctionPointer",
+    "Handle",
+    "Location",
+    "Memory",
+    "Open ",
+    "PcwR4oMtmu2insTPq7.l15p7hYCxuxjEUmgDh",
+    "Process",
+    "Process ",
+    "Protect",
+    "ResourceA",
+    "System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "System.Security.Cryptography.AesCryptoServiceProvider",
+    "Virtual ",
+    "Write ",
+    "dJhI0vp1vtX3vkWBT9.ud2Zd47iNdHSHPTvJ0",
+    "file:///",
+    "kernel ",
+    "{11111-22222-10009-11112}",
+    "{11111-22222-20001-00001}",
+    "{11111-22222-20001-00002}",
+    "{11111-22222-30001-00001}",
+    "{11111-22222-30001-00002}",
+    "{11111-22222-40001-00001}",
+    "{11111-22222-40001-00002}",
+    "{11111-22222-50001-00000}",
+    "{11111-22222-50001-00001}",
+    "{11111-22222-50001-00002}"
+  ],
+  "controllers": [
+    {
+      "name": "BaseApiController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "AllowAnonymousAttribute",
+        "EnableCorsAttribute"
+      ],
+      "actions": [
+        {
+          "name": "CurrentOrderType",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idOrderType",
+              "type": "byte"
+            }
+          ],
+          "returns": "Model.DomainModel.OrderType",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "RefreshIntegratedPrinters",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Collections.Generic.List`1<Model.DomainModel.Printer>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "RefreshBillPrinters",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Collections.Generic.List`1<Model.DomainModel.Printer>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Write",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "pattern",
+              "type": "Model.DomainModel.ReportTemplate"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "GetMediaFile",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "img",
+              "type": "Model.DomainModel.MediaFile"
+            }
+          ],
+          "returns": "System.Net.Http.HttpResponseMessage",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "OrderPrint",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "setFactor",
+              "type": "bool"
+            },
+            {
+              "name": "setKitchen",
+              "type": "bool"
+            },
+            {
+              "name": "forInsert",
+              "type": "bool"
+            },
+            {
+              "name": "isTakeAway",
+              "type": "bool"
+            },
+            {
+              "name": "idTemplate",
+              "type": "int"
+            },
+            {
+              "name": "appSetting",
+              "type": "Model.DomainModel.AppSettingProperty"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "OkFgSMgofw",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "Model.DomainModel.Agency"
+            }
+          ],
+          "returns": "bool",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "CompilerGeneratedAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BaseGetterController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "prefix",
+              "type": "string"
+            },
+            {
+              "name": "tableName",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ItemTypeModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetBase",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "db",
+              "type": "Model.DomainModel.ModelDBEntities"
+            },
+            {
+              "name": "prefix",
+              "type": "string"
+            },
+            {
+              "name": "tableName",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ItemTypeModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetCarwashTables",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.CarwashTable>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetAllDiscountLevel",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.DiscountLevelModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DeskController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idSalon",
+              "type": "System.Nullable`1<short>"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.DeskModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<Model.DomainModel.Desk>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Post",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "desk",
+              "type": "Model.DomainModel.Desk"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Put",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "desk",
+              "type": "Model.DomainModel.Desk"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Delete",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": true,
+          "attrs": [
+            "AllowAnonymousAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DigitalMenuController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "LogOn",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "tableId",
+              "type": "short"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.MenuUserInfo>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "GetMenu",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "idGroup",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idBrand",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idOrderType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "idProductType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            },
+            {
+              "name": "sortType",
+              "type": "byte"
+            },
+            {
+              "name": "canSync",
+              "type": "System.Nullable`1<bool>"
+            },
+            {
+              "name": "setInventory",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.MenuModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "?",
+            "AsyncStateMachineAttribute",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "GetProductGroups",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idParent",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idProductType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            },
+            {
+              "name": "JustParent",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ProductGroupModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetCustomer",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "mobileNo",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.Customer>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "?",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "InsertCustomer",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "customer",
+              "type": "ZhaniyaApi.Models.Customer"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpPostAttribute",
+            "?"
+          ]
+        },
+        {
+          "name": "GetImage",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Net.Http.HttpResponseMessage>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "HttpGetAttribute",
+            "OutputCacheAttribute"
+          ]
+        },
+        {
+          "name": "InsertOrder",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "invoiceDto",
+              "type": "ZhaniyaApi.Models.InvoiceDto"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.InvoiceResult>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "RouteAttribute",
+            "AsyncStateMachineAttribute",
+            "?",
+            "HttpPostAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GeneralController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "InsertCallHistory",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "appId",
+              "type": "string"
+            },
+            {
+              "name": "callerId",
+              "type": "string"
+            },
+            {
+              "name": "calledId",
+              "type": "string"
+            }
+          ],
+          "returns": "int",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpGetAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HomeController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "Index",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Web.Mvc.ActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        }
+      ]
+    },
+    {
+      "name": "InvoiceController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "Insert",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "invoiceModel",
+              "type": "ZhaniyaApi.Models.InvoiceModel"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.InvoiceResult>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "RouteAttribute",
+            "AsyncStateMachineAttribute",
+            "HttpPostAttribute"
+          ]
+        },
+        {
+          "name": "Update",
+          "http": [
+            "POST"
+          ],
+          "template": "Update",
+          "params": [
+            {
+              "name": "invoiceModel",
+              "type": "ZhaniyaApi.Models.InvoiceModel"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.InvoiceResult>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpPostAttribute",
+            "RouteAttribute",
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Get",
+          "http": [
+            "GET"
+          ],
+          "template": "Get",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.InvoiceModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpGetAttribute",
+            "AsyncStateMachineAttribute",
+            "RouteAttribute"
+          ]
+        },
+        {
+          "name": "GetAll",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "idFinancialYear",
+              "type": "short"
+            },
+            {
+              "name": "since",
+              "type": "long"
+            },
+            {
+              "name": "until",
+              "type": "long"
+            },
+            {
+              "name": "idAccount",
+              "type": "int"
+            },
+            {
+              "name": "invoiceNo",
+              "type": "int"
+            },
+            {
+              "name": "isPersianDate",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.InvoiceModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "RouteAttribute",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "Delete",
+          "http": [
+            "POST"
+          ],
+          "template": "Delete",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpPostAttribute",
+            "RouteAttribute"
+          ]
+        },
+        {
+          "name": "InsertCar",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "newCar",
+              "type": "ZhaniyaApi.Models.NewCar"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "RouteAttribute",
+            "HttpPostAttribute"
+          ]
+        },
+        {
+          "name": "pkEgsudbFd",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "ZhaniyaApi.Models.PaymentModel"
+            }
+          ],
+          "returns": "bool",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "CheckOut",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "invoiceModel",
+              "type": "ZhaniyaApi.Models.InvoiceModel"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.InvoiceResult>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "RouteAttribute",
+            "HttpPostAttribute"
+          ]
+        },
+        {
+          "name": "ChangeDesk",
+          "http": [
+            "POST"
+          ],
+          "template": "ChangeDesk",
+          "params": [
+            {
+              "name": "invoiceDeskModel",
+              "type": "ZhaniyaApi.Models.InvoiceDeskModel"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ResultModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpPostAttribute",
+            "AsyncStateMachineAttribute",
+            "RouteAttribute"
+          ]
+        },
+        {
+          "name": "JVTgD6T6fh",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "UpdateResponse"
+            },
+            {
+              "name": " ",
+              "type": "Model.DomainModel.AppSettingProperty"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Print",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "setFactor",
+              "type": "bool"
+            },
+            {
+              "name": "setKitchen",
+              "type": "bool"
+            },
+            {
+              "name": "isTakeAway",
+              "type": "bool"
+            },
+            {
+              "name": "forInsert",
+              "type": "bool"
+            },
+            {
+              "name": "idTemplate",
+              "type": "int"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ResultModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "kDhg4CxoNf",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            },
+            {
+              "name": " ",
+              "type": "byte"
+            },
+            {
+              "name": " ",
+              "type": "int"
+            }
+          ],
+          "returns": "Stimulsoft.Report.Mvc.StiMvcActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "GetBillPrint",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "exportType",
+              "type": "byte"
+            },
+            {
+              "name": "idTemplate",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Net.Http.HttpResponseMessage",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpGetAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MediaFileController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "Get",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<Model.DomainModel.MediaFile>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "OutputCacheAttribute",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "GetFile",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Net.Http.HttpResponseMessage>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "OutputCacheAttribute",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "GetClipFile",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [],
+          "returns": "System.Net.Http.HttpResponseMessage",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "OutputCacheAttribute",
+            "?",
+            "HttpGetAttribute"
+          ]
+        },
+        {
+          "name": "GetVideo",
+          "http": [
+            "GET"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "videoName",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Net.Http.HttpResponseMessage",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "HttpGetAttribute",
+            "OutputCacheAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PersonController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "canVisible",
+              "type": "bool"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.PersonModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetBill",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idAccount",
+              "type": "int"
+            },
+            {
+              "name": "since",
+              "type": "string"
+            },
+            {
+              "name": "until",
+              "type": "string"
+            },
+            {
+              "name": "showDetails",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Collections.Generic.IEnumerable`1<Model.Entity.LedgerItem>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.PersonModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByTel",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.PersonModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Insert",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "newPersonModel",
+              "type": "ZhaniyaApi.Models.NewPersonModel"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ResultModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute",
+            "HttpPostAttribute"
+          ]
+        },
+        {
+          "name": "hSDgGB2QYa",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "aETgdeYOdk",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            },
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "vvogWMQcnn",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        }
+      ]
+    },
+    {
+      "name": "ProductBrandController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idParent",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ProductGroupModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<Model.DomainModel.ProductBrand>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "jKEgay2I8R",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "productBrand",
+              "type": "Model.DomainModel.ProductBrand"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "oM8gR4LN61",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "productBrand",
+              "type": "Model.DomainModel.ProductBrand"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "eqngI91K9r",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": true,
+          "attrs": [
+            "AllowAnonymousAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ProductController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idGroup",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idBrand",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idOrderType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "idProductType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            },
+            {
+              "name": "sortType",
+              "type": "byte"
+            },
+            {
+              "name": "canSync",
+              "type": "System.Nullable`1<bool>"
+            },
+            {
+              "name": "setInventory",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<ZhaniyaApi.Models.ProductModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetSlider",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<System.Net.Http.HttpResponseMessage>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetSliderID",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Collections.Generic.IEnumerable`1<int>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "GetTodayProducts",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<int>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "itIgmdbOeH",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "byte"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<int>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Firg28xacs",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "byte"
+            }
+          ],
+          "returns": "System.Linq.IQueryable`1<Model.DomainModel.Product>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "GetDailyProductList",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "date",
+              "type": "byte"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ProductModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByGroupId",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idGroup",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Model.DomainModel.Product>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ProductModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetProductBarcode",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "barcode",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ProductModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByIdInvoice",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "int",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ProductRating>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByInvoiceNumber",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "int",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ProductRating>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByOrderNo",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "short",
+              "type": "short"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.ProductRating",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "GetInventory",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "idFinancialYear",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idStore",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idCostCenter",
+              "type": "System.Nullable`1<short>"
+            }
+          ],
+          "returns": "ZhaniyaApi.Models.StockModel",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "icIgnpwXUR",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "product",
+              "type": "Model.DomainModel.Product"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "KrTg66hP3M",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "product",
+              "type": "Model.DomainModel.Product"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        }
+      ]
+    },
+    {
+      "name": "ProductGroupController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idParent",
+              "type": "System.Nullable`1<short>"
+            },
+            {
+              "name": "idProductType",
+              "type": "System.Nullable`1<byte>"
+            },
+            {
+              "name": "setPicture",
+              "type": "bool"
+            },
+            {
+              "name": "JustParent",
+              "type": "bool"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.ProductGroupModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<Model.DomainModel.ProductGroup>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "ofhgeFPkAE",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "productGroup",
+              "type": "Model.DomainModel.ProductGroup"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "AipgrPdhgV",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "productGroup",
+              "type": "Model.DomainModel.ProductGroup"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "FSRghiqrde",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": true,
+          "attrs": [
+            "AllowAnonymousAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RatingController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetCommentSample",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<ZhaniyaApi.Models.CommentSampleModel>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "Insert",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "ratingList",
+              "type": "ZhaniyaApi.Models.RatingList"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<ZhaniyaApi.Models.ResultModel>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "gVmgi8uSVu",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            },
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "DLTgX8LClp",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "int"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        }
+      ]
+    },
+    {
+      "name": "UserController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": "User",
+      "authorize": false,
+      "classAttrs": [
+        "RoutePrefixAttribute"
+      ],
+      "actions": [
+        {
+          "name": "Login",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "model",
+              "type": "ZhaniyaApi.Models.LoginModel"
+            }
+          ],
+          "returns": "System.Web.Http.IHttpActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "RouteAttribute",
+            "HttpPostAttribute"
+          ]
+        },
+        {
+          "name": "LoginWithAgency",
+          "http": [
+            "POST"
+          ],
+          "template": "",
+          "params": [
+            {
+              "name": "model",
+              "type": "ZhaniyaApi.Models.AgencyFinancialYear"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Web.Http.IHttpActionResult>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "RouteAttribute",
+            "AsyncStateMachineAttribute",
+            "HttpPostAttribute",
+            "?"
+          ]
+        },
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<string>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SalonController",
+      "namespace": "ZhaniyaApi.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [
+        "?"
+      ],
+      "actions": [
+        {
+          "name": "GetAll",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Model.DomainModel.Salon>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "AsyncStateMachineAttribute"
+          ]
+        },
+        {
+          "name": "GetByAgencyId",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "idAgency",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Model.DomainModel.Salon>>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Get",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "System.Threading.Tasks.Task`1<Model.DomainModel.Salon>",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Post",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "salon",
+              "type": "Model.DomainModel.Salon"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Put",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "salon",
+              "type": "Model.DomainModel.Salon"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Delete",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "id",
+              "type": "int"
+            }
+          ],
+          "returns": "string",
+          "authorize": false,
+          "allowAnonymous": true,
+          "attrs": [
+            "AllowAnonymousAttribute"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HelpController",
+      "namespace": "ZhaniyaApi.Areas.HelpPage.Controllers",
+      "routePrefix": null,
+      "authorize": false,
+      "classAttrs": [],
+      "actions": [
+        {
+          "name": "A4Wq6SSECa",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": " ",
+              "type": "System.Web.Http.HttpConfiguration"
+            }
+          ],
+          "returns": "void",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": [
+            "CompilerGeneratedAttribute"
+          ]
+        },
+        {
+          "name": "Index",
+          "http": [],
+          "template": null,
+          "params": [],
+          "returns": "System.Web.Mvc.ActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "Api",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "apiId",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Web.Mvc.ActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        },
+        {
+          "name": "ResourceModel",
+          "http": [],
+          "template": null,
+          "params": [
+            {
+              "name": "modelName",
+              "type": "string"
+            }
+          ],
+          "returns": "System.Web.Mvc.ActionResult",
+          "authorize": false,
+          "allowAnonymous": false,
+          "attrs": []
+        }
+      ]
+    }
+  ]
+}
